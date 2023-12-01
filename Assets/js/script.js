@@ -4,6 +4,9 @@
 
 
 //DATA
+var questionIndex = 0;
+
+
 var questionBank = [
     {
       question: "What is the capital of France?",
@@ -17,8 +20,8 @@ var questionBank = [
     },
     {
       question: "What is the capital of Brazil?",
-      choices: ["Buenos Aires", "Rio de Janeiro", "Brasília", "São Paulo"],
-      correctAnswer: "Brasília"
+      choices: ["Buenos Aires", "Rio de Janeiro", "Brasilia", "Sao Paulo"],
+      correctAnswer: "Brasilia"
     },
     {
       question: "What is the capital of Australia?",
@@ -32,23 +35,36 @@ var questionBank = [
     }
   ];
 
+  var currentQuestion = questionBank[questionIndex];
+
+
   //FUNCTIONS
-  function startGame();
-    //Display first question
+  function startGame() {
+    displayQuestion();
+    displayChoices();
+    checkAnswer();
+}
     function displayQuestion() {
-     var questionContainer = document.getElementById('question-section');
-        for (var i = 0; i<questionBank.length < i++) {
-            var currentQ = questionBank[i].question[i]
+        var questionContainer = document.getElementById('question-section');
+        var questionElement = document.createElement('p');
+            questionElement.textContent = currentQuestion.question;
+            questionContainer.appendChild(questionElement);
+    }
+    
+    function displayChoices() {
+        var choicesContainer = document.getElementById('choices-section');
+        
+        for (var i = 0; i < currentQuestion.choices.length; i++) {
+        var choiceBtn = document.createElement('button')
+        choiceBtn.textContent = currentQuestion.choices[i];
+        choicesContainer.appendChild(choiceBtn);
+        }
         }
 
-    function displayChoices(index){
-
-    }
-       
-        var questionSet = questionBank[index].question[index];
+        
      
 
-    }
+    ;
 
 //USER INTERACTIONS
 
