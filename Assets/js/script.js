@@ -4,6 +4,8 @@
 
 
 //DATA
+var questionContainer;
+var choicesContainer;
 var questionIndex = 0;
 
 
@@ -45,28 +47,71 @@ var questionBank = [
     checkAnswer();
 }
     function displayQuestion() {
-        var questionContainer = document.getElementById('question-section');
+        questionContainer = document.getElementById('question-section');
         var questionElement = document.createElement('p');
             questionElement.textContent = currentQuestion.question;
             questionContainer.appendChild(questionElement);
     }
     
     function displayChoices() {
-        var choicesContainer = document.getElementById('choices-section');
+        choicesContainer = document.getElementById('choices-section');
         
         for (var i = 0; i < currentQuestion.choices.length; i++) {
         var choiceBtn = document.createElement('button')
         choiceBtn.textContent = currentQuestion.choices[i];
         choicesContainer.appendChild(choiceBtn);
+        choiceBtn.addEventListener('click', function (event) {
+            checkAnswer(event.target.textContent, currentQuestion.correctAnswer);
+          });
         }
         }
+ 
 
-        
      
 
     ;
 
 //USER INTERACTIONS
+   
+        // function checkAnswer(selectedAnswer, correctAnswer) {
+        //     questionIndex++;
+            
+        //     if (selectedAnswer === correctAnswer)
+        //         alert('Right!');
+        //     else
+        //         alert('Wrong!');
+        // }
+        //     if (questionIndex < questionBank.length) {
+        //     displayQuestion(currentQuestion);
+        //     displayChoices(currentQuestion);
+        //     } else {
+        //         alert('Game Over!')
+        //     }
+
+            function checkAnswer(selectedAnswer, correctAnswer) {
+                if (selectedAnswer === correctAnswer) {
+                  alert('Right!');
+                } else {
+                  alert('Wrong!');
+                }
+              
+                questionIndex++;
+                choicesContainer.innerHTML = '';
+                questionContainer.innerHTML = '';
+                if (questionIndex < questionBank.length) {
+                  currentQuestion = questionBank[questionIndex];
+                  displayQuestion();
+                  displayChoices();
+                } else {
+                  alert('Game Over!');
+                }
+              }
+              
+        
+        
+    
+        
+        
 
 
 
