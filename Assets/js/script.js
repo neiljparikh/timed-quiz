@@ -4,7 +4,7 @@
 
 
 //DATA
-var questions = [
+var questionBank = [
     {
       question: "What is the capital of France?",
       choices: ["Berlin", "Paris", "Madrid", "Rome"],
@@ -31,3 +31,28 @@ var questions = [
       correctAnswer: "Rome"
     }
   ];
+
+  //FUNCTIONS
+  function startGame();
+    //Display first question
+    function displayQuestion() {
+     var questionContainer = document.getElementById('question-section');
+        for (var i = 0; i<questionBank.length < i++) {
+            var currentQ = questionBank[i].question[i]
+        }
+
+    function displayChoices(index){
+
+    }
+       
+        var questionSet = questionBank[index].question[index];
+     
+
+    }
+
+//USER INTERACTIONS
+
+
+
+  //INITIALIZATION
+  startGame();
