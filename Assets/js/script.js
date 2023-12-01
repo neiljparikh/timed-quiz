@@ -66,30 +66,10 @@ var questionBank = [
         }
         }
  
-
-     
-
     ;
 
-//USER INTERACTIONS
-   
-        // function checkAnswer(selectedAnswer, correctAnswer) {
-        //     questionIndex++;
-            
-        //     if (selectedAnswer === correctAnswer)
-        //         alert('Right!');
-        //     else
-        //         alert('Wrong!');
-        // }
-        //     if (questionIndex < questionBank.length) {
-        //     displayQuestion(currentQuestion);
-        //     displayChoices(currentQuestion);
-        //     } else {
-        //         alert('Game Over!')
-        //     }
-
-            function checkAnswer(selectedAnswer, correctAnswer) {
-                if (selectedAnswer === correctAnswer) {
+    function checkAnswer(selectedAnswer, correctAnswer) {
+            if (selectedAnswer === correctAnswer) {
                   alert('Right!');
                 } else {
                   alert('Wrong!');
@@ -98,11 +78,11 @@ var questionBank = [
                 questionIndex++;
                 choicesContainer.innerHTML = '';
                 questionContainer.innerHTML = '';
-                if (questionIndex < questionBank.length) {
+            if (questionIndex < questionBank.length) {
                   currentQuestion = questionBank[questionIndex];
                   displayQuestion();
                   displayChoices();
-                } else {
+            } else {
                   alert('Game Over!');
                 }
               }
