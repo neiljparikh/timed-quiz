@@ -1,12 +1,17 @@
 //DEPENDENCIES
-
-
-
+// var timerId;
+var button = document.querySelector('#startButton')
+choicesContainer = document.getElementById('choices-section');
+questionContainer = document.getElementById('question-section');
 
 //DATA
 var questionContainer;
 var choicesContainer;
 var questionIndex = 0;
+var timerEl = document.getElementById('time');
+// var questionsEl =
+// var time = 30;
+button.textContent = "Start Quiz"
 
 
 var questionBank = [
@@ -40,60 +45,113 @@ var questionBank = [
   var currentQuestion = questionBank[questionIndex];
 
 
-  //FUNCTIONS
+//   //FUNCTIONS
   function startGame() {
-    displayQuestion();
+    displayQuestion(currentQuestion);
     displayChoices();
-    checkAnswer();
-}
-    function displayQuestion() {
-        questionContainer = document.getElementById('question-section');
+    }
+    //hide start screen
+  
+    //un-hide questions section
+    // question
+    
+    //start timer...need to add function called clockTick (or whatever) to update time and check if use has run out of time
+    // timerId = setInterval(timerCount, 1000);
+
+    // function timerCount() {
+    //   time--;
+    // }
+
+    function displayQuestion(currentQuestion) {
+        
+      questionContainer.innerHTML = '';
         var questionElement = document.createElement('p');
             questionElement.textContent = currentQuestion.question;
             questionContainer.appendChild(questionElement);
+            
     }
     
+    
+
     function displayChoices() {
-        choicesContainer = document.getElementById('choices-section');
         
+      choicesContainer.innerHTML = '';
         for (var i = 0; i < currentQuestion.choices.length; i++) {
         var choiceBtn = document.createElement('button')
         choiceBtn.textContent = currentQuestion.choices[i];
         choicesContainer.appendChild(choiceBtn);
         choiceBtn.addEventListener('click', function (event) {
-            checkAnswer(event.target.textContent, currentQuestion.correctAnswer);
+            event.preventDefault()
+            checkAnswer(event.target.textContent, currentQuestion.correctAnswer)
+            
           });
+          
         }
         }
  
-    ;
+    
+        function checkAnswer(selectedAnswer, correctAnswer) {
+          if (selectedAnswer === correctAnswer) {
+            alert('Right!');
+          } else {
+            alert('Wrong!');
+          }
+        
+          questionIndex++; 
+          if (questionIndex < questionBank.length) {
+            currentQuestion = questionBank[questionIndex]; // Update currentQuestion
+            displayQuestion(currentQuestion);
+            displayChoices();
+          } else {
+            alert('Game Over!');
+          }
+        }
+        
+              
+        // function quizEnd(){
+        //     //stop timer
+        //     clearInterval(timerId);
 
-    function checkAnswer(selectedAnswer, correctAnswer) {
-            if (selectedAnswer === correctAnswer) {
-                  alert('Right!');
-                } else {
-                  alert('Wrong!');
-                }
-              
-                questionIndex++;
-                choicesContainer.innerHTML = '';
-                questionContainer.innerHTML = '';
-            if (questionIndex < questionBank.length) {
-                  currentQuestion = questionBank[questionIndex];
-                  displayQuestion();
-                  displayChoices();
-            } else {
-                  alert('Game Over!');
-                }
-              }
-              
+        // //     //show end screen
+        //     var endScreenEl = document.getElementById('game-over-screen');
+        //     endScreenEl.removeAttribute('class');
+        // //     //show final score
+        //     var finalScoreEl = document.getElementById('final-score');
+        //     finalScoreEl.textContent = score;
+        // //     //hide questions section
+        //     choicesContainer.setAttribute('class','hide');
+        // // }
+
+        // function saveHiScore(){
+        //     //get value of input box
+        //     var userInitials = userInialsEl.value.trim();
+
+        //     //check to make sure input was not empty
+        //     //get save scores from local storage
+        //     var highscore = 
+        //     JSON.parse(window.localStorage.getItem('highscores') || [])
+        //     //format score object for current user
+        //     //save to local storage...need to add newScore
+        //     highscore.push(newScore);
+        //     window.localStorage.setItem('highscores',JSON.stringify(highscores));
         
-        
+        // }
     
         
+  //do I need to add a prevent default
+  //USER INTERACTION
+        button.addEventListener("click",function() {
+          var startScreenEl = document.getElementById('start-screen');
+          startScreenEl.setAttribute('class','hide');
+          startGame()
+        });
         
-
 
 
   //INITIALIZATION
-  startGame();
+
+
+
+
+
+
