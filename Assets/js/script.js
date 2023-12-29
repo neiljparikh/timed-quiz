@@ -4,8 +4,10 @@ var button = document.querySelector('#startButton')
 choicesContainer = document.getElementById('choices-section');
 questionContainer = document.getElementById('question-section');
 gameOverContainer = document.getElementById('game-over-screen');
+highscore = document.getElementById('high-score');
 
 //DATA
+var score = 0;
 var questionContainer;
 var choicesContainer;
 var questionIndex = 0;
@@ -72,8 +74,6 @@ var questionBank = [
             
     }
     
-    
-
     function displayChoices() {
         
       choicesContainer.innerHTML = '';
@@ -90,10 +90,10 @@ var questionBank = [
         }
         }
  
-    
         function checkAnswer(selectedAnswer, correctAnswer) {
           if (selectedAnswer === correctAnswer) {
             alert('Right!');
+            score += 10;
           } else {
             alert('Wrong!');
           }
@@ -113,6 +113,8 @@ var questionBank = [
           questionContainer.setAttribute('class','hide')
           choicesContainer.setAttribute('class','hide')
           gameOverContainer.classList.remove('hide')
+          highscore.textContent = score
+          gameOverContainer.appendChild(highscore)
         }
               
         // function quizEnd(){
