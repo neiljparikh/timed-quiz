@@ -3,6 +3,7 @@
 var button = document.querySelector('#startButton')
 choicesContainer = document.getElementById('choices-section');
 questionContainer = document.getElementById('question-section');
+gameOverContainer = document.getElementById('game-over-screen');
 
 //DATA
 var questionContainer;
@@ -103,10 +104,16 @@ var questionBank = [
             displayQuestion(currentQuestion);
             displayChoices();
           } else {
-            alert('Game Over!');
+            gameOver();
           }
         }
         
+
+        function gameOver() {
+          questionContainer.setAttribute('class','hide')
+          choicesContainer.setAttribute('class','hide')
+          gameOverContainer.classList.remove('hide')
+        }
               
         // function quizEnd(){
         //     //stop timer
