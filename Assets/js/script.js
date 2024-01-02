@@ -7,6 +7,7 @@ gameOverContainer = document.getElementById('game-over-screen');
 highscore = document.getElementById('high-score');
 
 //DATA
+var timer = 60;
 var score = 0;
 var questionContainer;
 var choicesContainer;
@@ -53,17 +54,7 @@ var questionBank = [
     displayQuestion(currentQuestion);
     displayChoices();
     }
-    //hide start screen
   
-    //un-hide questions section
-    // question
-    
-    //start timer...need to add function called clockTick (or whatever) to update time and check if use has run out of time
-    // timerId = setInterval(timerCount, 1000);
-
-    // function timerCount() {
-    //   time--;
-    // }
 
     function displayQuestion(currentQuestion) {
         
@@ -89,13 +80,18 @@ var questionBank = [
           
         }
         }
- 
+        // checks if the user selected the right answer
         function checkAnswer(selectedAnswer, correctAnswer) {
           if (selectedAnswer === correctAnswer) {
             alert('Right!');
             score += 10;
           } else {
             alert('Wrong!');
+            if (timer >= 20) {
+              timer -= 20;
+            } else {
+              timer = 0;
+            }
           }
         
           questionIndex++; 
@@ -104,20 +100,45 @@ var questionBank = [
             displayQuestion(currentQuestion);
             displayChoices();
           } else {
-            gameOver();
+            timer===0;
+            gameOver()
+            
           }
         }
-        
-
+        // displays game over screen 
         function gameOver() {
           questionContainer.setAttribute('class','hide')
           choicesContainer.setAttribute('class','hide')
           gameOverContainer.classList.remove('hide')
-          highscore.textContent = score
-          gameOverContainer.appendChild(highscore)
+          highscore.textContent = score;
+          timer=0
+          timerEl.textContent = timer;
+      
         }
               
-        // function quizEnd(){
+        function countDown() {
+         var countdown = setInterval(function(){
+          decrement()
+          if (timer<=0) {
+            clearInterval(countdown)
+            gameOver();
+          }
+         }, 1000)
+         
+         }
+
+         //decrements the time
+        function decrement() {
+          if (timer>0) {
+          timer--;
+          //updating the display
+          timerEl.textContent = timer
+        }
+        }
+
+        
+
+
         //     //stop timer
         //     clearInterval(timerId);
 
@@ -152,7 +173,8 @@ var questionBank = [
         button.addEventListener("click",function() {
           var startScreenEl = document.getElementById('start-screen');
           startScreenEl.setAttribute('class','hide');
-          startGame()
+          startGame();
+          countDown();
         });
         
 

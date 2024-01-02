@@ -8,13 +8,17 @@
     <title>Timed Quiz</title>
   </head>
   <body>
+    <header> 
+      <a href="./scores.html">View Highscores</a>
+      <div class="timer">Time:<span id="time">60</span> </div>
+    </header>
     <h1> Coding Quiz Challenge </h1>
     <div id="start-screen">
       <p>Answer the following questions correctly</p>
       <button id="startButton"> </button>
     </div>
     <!--scores-->
-    <div class="timer">Time:<span id="time">0</span> </div>
+    
     <!--class wrapper-->
     <!--id start screen class=start-->
     <!--start button-->
@@ -25,8 +29,11 @@
     <div id="choices-section"> </div> 
 
     <div id="game-over-screen" class="hide">
-        <h2> All done! </h2>
-        <div id="high-score"> </div>
+      <h2> All done! Your Score: <span id="high-score"> </span> </h2>  
+     <p> Enter your initals below </p>
+      <input type="text"> 
+      <button> Submit </button>
+        
     </div>
 
 
